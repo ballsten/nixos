@@ -3,7 +3,7 @@
 #! nix-shell -p bash parted e2fsprogs util-linux dosfstools
 
 # Variables
-swapsize = 4GB
+swapsize=4GB
 
 # NixOS preinstall script for a VM with UEFI
 # Basic disk partitioning

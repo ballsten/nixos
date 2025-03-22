@@ -1,10 +1,6 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -i bash --pure
-#! nix-shell -p bash parted e2fsprogs util-linux dosfstools
-
 # Variables
 SWAP_SIZE=4GB
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 # bootstrap NixOS script for a VM with UEFI
 
@@ -27,7 +23,8 @@ mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
 swapon /dev/sda2
 
 echo "Copying bootstrap configuration..."
-cp $SCRIPT_DIR/../environments/bootstrap/*.nix /mnt/etc/nixos/ 
+mkdir -p /mnt/etc/nixos
+cp $SCRIPT_DIR/../environments/bootstrap/*.nix /mnt/etc/nixos/
 
 echo "Installing NixOS..."
 nixos-install --no-root-passwd

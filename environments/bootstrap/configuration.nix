@@ -59,6 +59,7 @@
   users.users.user = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    hashedPassword = "$y$j9T$j7sI.mImrVEDMwWnG/Bxc1$bZ6S4C5wk3k7FndCS3jqYjbLchT//APgBpeMwtm4Ph4";
     # packages = with pkgs; [
     #   tree
     # ];

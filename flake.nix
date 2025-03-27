@@ -10,7 +10,14 @@
     nixosConfigurations.dev-vm = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        ./environments/dev-vm/configuration.nix
+        ./hosts/dev-vm/configuration.nix
+      ];
+    };
+
+    nixosConfigurations.surface-laptop = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/surface-laptop/configuration.nix
       ];
     };
   };

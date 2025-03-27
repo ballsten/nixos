@@ -11,27 +11,29 @@
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
 
-    nixosConfigurations.dev-vm = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/dev-vm/configuration.nix
+    nixosConfigurations = {
+      dev-vm = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/dev-vm/configuration.nix
 
-	home-manager.nixosModules.home-manager
-	{
-	  home-manager.useGlobalPkgs = true;
-	  home-manager.useUserPackages = true;
-	  home-manager.users.ballsten = import ./home.nix;
-	}
-      ];
-    };
+	  home-manager.nixosModules.home-manager
+	  {
+	    home-manager.useGlobalPkgs = true;
+	    home-manager.useUserPackages = true;
+	    home-manager.users.ballsten = import ./home/default.nix;
+	  }
+        ];
+      };
 
-    nixosConfigurations.surface-laptop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/surface-laptop/configuration.nix
-      ];
+      surface-laptop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/surface-laptop/configuration.nix
+        ];
+      };
     };
   };
 }

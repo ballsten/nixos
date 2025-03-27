@@ -24,7 +24,7 @@ swapon /dev/sda2
 
 echo "Copying bootstrap configuration..."
 mkdir -p /mnt/etc/nixos
-cp $SCRIPT_DIR/../environments/bootstrap/*.nix /mnt/etc/nixos/
+cp $SCRIPT_DIR/../hosts/bootstrap/*.nix /mnt/etc/nixos/
 
 echo "Installing NixOS..."
 nixos-install --no-root-passwd

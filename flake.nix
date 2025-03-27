@@ -22,7 +22,7 @@
 	  {
 	    home-manager.useGlobalPkgs = true;
 	    home-manager.useUserPackages = true;
-	    home-manager.users.ballsten = import ./home/default.nix;
+	    home-manager.users.ballsten = import ./home;
 	  }
         ];
       };

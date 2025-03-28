@@ -14,6 +14,7 @@
     ../../homeManagerModules/features/git.nix
     ../../homeManagerModules/features/nixvim
     ../../homeManagerModules/features/bash.nix
+    ../../homeManagerModules/features/hyprland
   ];
 
   programs.home-manager.enable = true;

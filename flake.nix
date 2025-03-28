@@ -11,9 +11,13 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-wsl, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, nixos-wsl, nixvim, ... }@inputs: {
     nixosConfigurations = {
       dev-vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -36,7 +40,6 @@
         modules = [
           ./hosts/surface-laptop/configuration.nix
 
-
 	  home-manager.nixosModules.home-manager
 	  {
 	    home-manager.useGlobalPkgs = true;
@@ -57,6 +60,9 @@
 	  {
 	    home-manager.useGlobalPkgs = true;
 	    home-manager.useUserPackages = true;
+	    home-manager.sharedModules = [
+	      nixvim.homeManagerModules.nixvim
+	    ];
 	    home-manager.users.ballsten = import ./home;
 	  }
         ];

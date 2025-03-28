@@ -1,7 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
-  # TODO please change the username & home directory to your own
   home.username = "ballsten";
   home.homeDirectory = "/home/ballsten";
 
@@ -9,9 +8,7 @@
   home.packages = with pkgs; [
     neofetch
     git
-    neovim
     lazygit
-
   ];
 
   # basic configuration of git, please change to your own
@@ -30,6 +27,11 @@
     shellAliases = {
       lg = "lazygit";
     };
+  };
+
+  programs.nixvim = {
+    enable = true;
+    colorschemes.catppuccin.enable = true;
   };
 
   programs.home-manager.enable = true;

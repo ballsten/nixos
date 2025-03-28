@@ -32,6 +32,13 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/surface-laptop/configuration.nix
+
+          home-manager.nixosModules.home-manager
+	  {
+	    home-manager.useGlobalPkgs = true;
+	    home-manager.useUserPackages = true;
+	    home-manager.users.ballsten = import ./home;
+	  }
         ];
       };
     };

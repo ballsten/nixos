@@ -9,15 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  
-  nix.settings = {
-    # enable flakes
-    experimental-features = [ "nix-command" "flakes" ];
-
-    # enable Hyprland cachix
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -28,7 +19,6 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  # Set your time zone.
   time.timeZone = "Australia/Sydney";
 
   # Enable sound.
@@ -48,17 +38,13 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
-  programs.firefox.enable = true;
-  programs.hyprland.enable = true;
+  # programs.firefox.enable = true;
+  # programs.hyprland.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git
-    wget
-    kitty
-    nvim
-    lazygit
+    vim
   ];
 
   # List services that you want to enable:

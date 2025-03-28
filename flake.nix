@@ -17,37 +17,13 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-wsl, nixvim, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, nixos-wsl, nixvim, ... }@inputs: let
+    helperLib = import ./lib/default.nix {inherit inputs;};
+  in
+  {
     nixosConfigurations = {
-      dev-vm = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/dev-vm/configuration.nix
-
-	  home-manager.nixosModules.home-manager
-	  {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users.ballsten = import ./home;
-	  }
-        ];
-      };
-
-      surface-laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/surface-laptop/configuration.nix
-
-	  home-manager.nixosModules.home-manager
-	  {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users.ballsten = import ./home;
-	  }
-        ];
-      };
+      dev-vm = helperLib.mkSystem ./hosts/dev-vm/configuration.nix;
+      surface-laptop = helperLib.mkySystem ./hosts/surface-laptop/configuration.nix;
 
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

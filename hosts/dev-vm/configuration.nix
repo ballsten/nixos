@@ -4,18 +4,10 @@
 
 { config, lib, pkgs, ... }:
 
-let
-  home-manager = builtins.fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
-    sha256 = "156hc11bb6xiypj65q6gzkhw1gw31dwv6dfh6rnv20hgig1sbfld";
-  };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-
-      (import "${home-manager}/nixos")
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -38,23 +30,6 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" ]; 
     hashedPassword = "$y$j9T$j7sI.mImrVEDMwWnG/Bxc1$bZ6S4C5wk3k7FndCS3jqYjbLchT//APgBpeMwtm4Ph4";
-  };
-
-  # some home-manager configuration
-  home-manager.users.ballsten = { pkgs, ... } : {
-    home.packages = with pkgs; [
-      neovim
-      git
-      lazygit
-    ];
-
-    programs.bash.enable = true;
-
-    home.shellAliases = {
-      lg = "lazygit";
-    };
-
-    home.stateVersion = "24.11";
   };
 
   # programs.firefox.enable = true;

@@ -8,7 +8,7 @@ in rec {
   # helper functions
 
   # buildables
-  mkSystem = config:
+  mkSystem = config: home:
     inputs.nixpkgs.lib.nixosSystem {
       
       specialArgs = {
@@ -23,7 +23,7 @@ in rec {
           home-manager.sharedModules = [
             nixvim.homeManagerModules.nixvim
           ];
-          home-manager.users.ballsten = import ../home;
+          home-manager.users.ballsten = import home;
         }
       ];
     };

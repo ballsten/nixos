@@ -22,8 +22,8 @@
   in
   {
     nixosConfigurations = {
-      dev-vm = helperLib.mkSystem ./hosts/dev-vm/configuration.nix;
-      surface-laptop = helperLib.mkSystem ./hosts/surface-laptop/configuration.nix;
+      dev-vm = helperLib.mkSystem ./hosts/dev-vm/configuration.nix ./hosts/dev-vm/home.nix;
+      surface-laptop = helperLib.mkSystem ./hosts/surface-laptop/configuration.nix /hosts/surface-laptop/home.nix;
 
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

@@ -10,33 +10,11 @@
     lazygit
   ];
 
-  programs.git = {
-    enable = true;
-    userName = "Andrew Theaker";
-    userEmail = "andrew@theaker.name";
-  };
-
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-
-    shellAliases = {
-      lg = "lazygit";
-    };
-  };
-
-  programs.nixvim = {
-    enable = true;
-    colorschemes.catppuccin.enable = true;
-    globals.mapleader = " ";
-    opts = {
-      number = true;
-      relativenumber = true;
-      autoindent = true;
-      expandtab = true;
-      shiftwidth = 2;
-    };
-  };
+  imports = [
+    ../../homeManagerModules/features/git.nix
+    ../../homeManagerModules/features/nixvim
+    ../../homeManagerModules/features/bash.nix
+  ];
 
   programs.home-manager.enable = true;
 

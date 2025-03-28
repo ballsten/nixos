@@ -7,11 +7,9 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     neofetch
-    git
     lazygit
   ];
 
-  # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
     userName = "Andrew Theaker";
@@ -21,9 +19,7 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    # TODO add your custom bashrc here
 
-    # set some aliases, feel free to add more or remove some
     shellAliases = {
       lg = "lazygit";
     };
@@ -32,6 +28,14 @@
   programs.nixvim = {
     enable = true;
     colorschemes.catppuccin.enable = true;
+    globals.mapleader = " ";
+    opts = {
+      number = true;
+      relativenumber = true;
+      autoindent = true;
+      expandtab = true;
+      shiftwidth = 2;
+    };
   };
 
   programs.home-manager.enable = true;

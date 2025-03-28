@@ -5,8 +5,6 @@
   outputs = inputs.self.outputs;
 in rec {
 
-  # helper functions
-
   # buildables
   mkSystem = config: home:
     inputs.nixpkgs.lib.nixosSystem {
@@ -27,4 +25,6 @@ in rec {
         }
       ];
     };
+
+  # helper functions
 }

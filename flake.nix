@@ -36,6 +36,7 @@
         modules = [
           ./hosts/surface-laptop/configuration.nix
 
+
 	  home-manager.nixosModules.home-manager
 	  {
 	    home-manager.useGlobalPkgs = true;

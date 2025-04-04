@@ -8,6 +8,7 @@
 { config, lib, pkgs, ... }:
 
 {
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.hostName = "wsl";
 
   users.users.ballsten = {
